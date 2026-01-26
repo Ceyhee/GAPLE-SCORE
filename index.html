@@ -3,43 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator</title>
+    <title>MLBB Analytics Pro - Sync Logic</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            background: url('https://source.unsplash.com/1600x900/?technology') no-repeat center center fixed;
-            background-size: cover;
-        }
-        .glass {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
-            padding: 20px;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #020617; color: #f8fafc; min-height: 100vh; }
+        .glass { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .input-pro { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(71, 85, 105, 0.4); color: #fff; outline: none; transition: 0.3s; }
+        .input-pro:focus { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.1); }
+        .accent-bg { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen text-white">
-    <div class="glass max-w-lg w-full p-6 text-center">
-        <h1 class="text-3xl font-bold mb-4">🎉 QR Code Generator</h1>
-        <p class="mb-4">Masukkan teks atau URL untuk membuat QR Code.</p>
-        <input type="text" id="qrInput" placeholder="Masukkan teks/URL..." 
-               class="w-full p-2 rounded text-black mb-4">
-        <button onclick="generateQR()" class="bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded text-white">Buat QR Code</button>
-        <div id="qrResult" class="mt-4 hidden">
-            <img id="qrImage" class="mx-auto mt-4">
-            <a id="downloadQR" class="bg-green-500 hover:bg-green-700 px-4 py-2 rounded text-white mt-4 inline-block" download="qrcode.png">Download</a>
+<body class="p-4 md:p-12">
+
+    <div class="max-w-6xl mx-auto">
+        <header class="mb-12 text-center md:text-left">
+            <h1 class="text-4xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 italic">MLBB ELITE DASHBOARD</h1>
+            <p class="text-slate-500 mt-2 text-xs uppercase tracking-[0.4em] font-bold">Performance & Rank Optimization System</p>
+        </header>
+
+        <div class="grid xl:grid-cols-2 gap-10">
+            <div class="glass p-8 rounded-[2.5rem]">
+                <div class="flex items-center gap-3 mb-8">
+                    <i class="fas fa-sync-alt text-blue-400 animate-spin-slow"></i>
+                    <h2 class="text-lg font-bold tracking-tight">RANK CALCULATOR</h2>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest"><i class="fas fa-id-badge mr-1"></i> Pangkat Saat Ini</label>
+                            <select id="cRank" onchange="syncFromRank('c')" class="input-pro w-full p-4 rounded-2xl text-sm"></select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest"><i class="fas fa-star mr-1"></i> Bintang Sekarang</label>
+                            <input type="number" id="cStar" oninput="syncFromStar('c')" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest"><i class="fas fa-crosshairs mr-1"></i> Target Pangkat</label>
+                            <select id="tRank" onchange="syncFromRank('t')" class="input-pro w-full p-4 rounded-2xl text-sm"></select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest"><i class="fas fa-bullseye mr-1"></i> Target Bintang</label>
+                            <input type="number" id="tStar" oninput="syncFromStar('t')" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="0">
+                        </div>
+                    </div>
+
+                    <button onclick="calculatePath()" class="accent-bg w-full py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] shadow-xl hover:brightness-110 transition active:scale-95">
+                        <i class="fas fa-search-plus mr-2"></i>Analyze Match Path
+                    </button>
+
+                    <div id="rankRes" class="hidden mt-8 p-6 rounded-3xl bg-blue-500/5 border border-white/5">
+                        <div class="grid grid-cols-3 gap-3 text-center mb-6">
+                            <div class="p-3 bg-white/5 rounded-xl">
+                                <p class="text-[8px] text-slate-400 uppercase font-bold">Jarak</p>
+                                <p id="netWin" class="text-xl font-black text-blue-400"></p>
+                            </div>
+                            <div class="p-3 bg-white/5 rounded-xl">
+                                <p class="text-[8px] text-slate-400 uppercase font-bold">Bonus</p>
+                                <p id="starBonus" class="text-xl font-black text-yellow-400"></p>
+                            </div>
+                            <div class="p-3 bg-white/5 rounded-xl">
+                                <p class="text-[8px] text-slate-400 uppercase font-bold">Grading</p>
+                                <p id="gradingBonus" class="text-xl font-black text-emerald-400"></p>
+                            </div>
+                        </div>
+                        <div class="text-center pt-4 border-t border-white/10">
+                            <p id="rankSummary" class="text-sm text-slate-200 leading-relaxed font-medium"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass p-8 rounded-[2.5rem]">
+                <div class="flex items-center gap-3 mb-8">
+                    <i class="fas fa-chart-line text-emerald-400"></i>
+                    <h2 class="text-lg font-bold tracking-tight uppercase">Win Rate Analytics</h2>
+                </div>
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest"><i class="fas fa-gamepad mr-1"></i> Matches</label>
+                            <input type="number" id="wrMatch" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="0">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest"><i class="fas fa-percent mr-1"></i> Curr WR</label>
+                            <input type="number" id="wrCurrent" step="0.01" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="0.00">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest"><i class="fas fa-dot-circle mr-1"></i> Target WR</label>
+                            <input type="number" id="wrTarget" step="0.01" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="0.00">
+                        </div>
+                    </div>
+                    <button onclick="calcWR()" class="bg-slate-100 text-slate-900 w-full py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-white transition active:scale-95">Analyze Performance</button>
+                    
+                    <div id="wrRes" class="hidden space-y-6 mt-4">
+                        <div class="grid grid-cols-2 gap-4 text-center">
+                            <div class="p-5 bg-blue-500/10 rounded-2xl border border-blue-500/20">
+                                <p class="text-[10px] text-slate-400 uppercase font-bold mb-1"><i class="fas fa-thumbs-up mr-1 text-blue-400"></i> Wins</p>
+                                <p id="vWin" class="text-2xl font-black text-blue-400"></p>
+                            </div>
+                            <div class="p-5 bg-red-500/10 rounded-2xl border border-red-500/20">
+                                <p class="text-[10px] text-slate-400 uppercase font-bold mb-1"><i class="fas fa-thumbs-down mr-1 text-red-400"></i> Loss</p>
+                                <p id="vLoss" class="text-2xl font-black text-red-400"></p>
+                            </div>
+                        </div>
+                        <div class="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-3xl text-center">
+                            <p class="text-[10px] text-emerald-400 font-bold uppercase mb-2 tracking-widest">Required Win Streak</p>
+                            <p id="vStreak" class="text-4xl font-black text-emerald-400"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        function generateQR() {
-            const input = document.getElementById("qrInput").value;
-            if (!input) return alert("Masukkan teks atau URL!");
-            const qrURL = `https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${encodeURIComponent(input)}&choe=UTF-8`;
+        const tiers = [
+            { name: "Grandmaster V", base: 0, mythic: false, defaultS: 0 }, { name: "Grandmaster IV", base: 4, mythic: false, defaultS: 0 }, { name: "Grandmaster III", base: 8, mythic: false, defaultS: 0 }, { name: "Grandmaster II", base: 12, mythic: false, defaultS: 0 }, { name: "Grandmaster I", base: 16, mythic: false, defaultS: 0 },
+            { name: "Epic V", base: 20, mythic: false, defaultS: 0 }, { name: "Epic IV", base: 25, mythic: false, defaultS: 0 }, { name: "Epic III", base: 30, mythic: false, defaultS: 0 }, { name: "Epic II", base: 35, mythic: false, defaultS: 0 }, { name: "Epic I", base: 40, mythic: false, defaultS: 0 },
+            { name: "Legend V", base: 45, mythic: false, defaultS: 0 }, { name: "Legend IV", base: 50, mythic: false, defaultS: 0 }, { name: "Legend III", base: 55, mythic: false, defaultS: 0 }, { name: "Legend II", base: 60, mythic: false, defaultS: 0 }, { name: "Legend I", base: 65, mythic: false, defaultS: 0 },
+            { name: "Mythic", base: 70, mythic: true, defaultS: 0 }, { name: "Mythic Honor", base: 70, mythic: true, defaultS: 25 }, { name: "Mythic Glory", base: 70, mythic: true, defaultS: 50 }, { name: "Mythic Immortal", base: 70, mythic: true, defaultS: 100 }
+        ];
 
-            document.getElementById("qrImage").src = qrURL;
-            document.getElementById("downloadQR").href = qrURL;
-            document.getElementById("qrResult").classList.remove("hidden");
+        const cSel = document.getElementById('cRank');
+        const tSel = document.getElementById('tRank');
+        tiers.forEach((t, i) => { 
+            const opt = `<option value="${i}">${t.name}</option>`;
+            cSel.innerHTML += opt; tSel.innerHTML += opt;
+        });
+
+        // FUNGSI 1: Bintang berubah -> Pangkat deteksi otomatis
+        function syncFromStar(type) {
+            const starIn = document.getElementById(type + 'Star');
+            const rankSel = document.getElementById(type + 'Rank');
+            let s = parseInt(starIn.value);
+            
+            if (isNaN(s)) return;
+
+            // Jika Rank saat ini bukan Mythic, dan input > 5, jangan langsung pindah ke Mythic jika user tidak mau
+            // Tapi khusus untuk Mythic (S > 5), kita auto-detect
+            if (s >= 100) rankSel.value = 18;
+            else if (s >= 50) rankSel.value = 17;
+            else if (s >= 25) rankSel.value = 16;
+            else if (s > 5) rankSel.value = 15;
+            // Jika s <= 5, kita biarkan di tier yang dipilih user kecuali user baru pindah rank
+        }
+
+        // FUNGSI 2: Pangkat berubah -> Bintang berubah otomatis
+        function syncFromRank(type) {
+            const rankSel = document.getElementById(type + 'Rank');
+            const starIn = document.getElementById(type + 'Star');
+            const tier = tiers[parseInt(rankSel.value)];
+
+            // Set bintang ke nilai default tier tersebut (misal Honor otomatis jadi 25)
+            starIn.value = tier.defaultS;
+        }
+
+        function calculatePath() {
+            const cIdx = parseInt(cSel.value);
+            const tIdx = parseInt(tSel.value);
+            const cS = parseInt(document.getElementById('cStar').value) || 0;
+            const tS = parseInt(document.getElementById('tStar').value) || 0;
+
+            let diff = (tiers[tIdx].base + tS) - (tiers[cIdx].base + cS);
+            let starBonus = (!tiers[cIdx].mythic && diff > 0) ? Math.floor(diff * 0.15) : 0;
+            let gradingBonus = (cIdx <= 14 && tIdx >= 15) ? 5 : 0;
+
+            const resDiv = document.getElementById('rankRes');
+            resDiv.classList.remove('hidden');
+
+            if (diff <= 0) {
+                document.getElementById('netWin').innerText = "0";
+                document.getElementById('rankSummary').innerText = "Target sudah tercapai!";
+                return;
+            }
+
+            document.getElementById('netWin').innerText = diff;
+            document.getElementById('starBonus').innerText = starBonus > 0 ? "+" + starBonus : "0";
+            document.getElementById('gradingBonus').innerText = gradingBonus > 0 ? "+" + gradingBonus : "0";
+            
+            let final = diff - starBonus - gradingBonus;
+            document.getElementById('rankSummary').innerHTML = `Anda membutuhkan sekitar <span class="text-blue-400 font-black">${final} Kemenangan Bersih</span> untuk mencapai target.`;
+        }
+
+        function calcWR() {
+            const m = parseInt(document.getElementById('wrMatch').value);
+            const cw = parseFloat(document.getElementById('wrCurrent').value);
+            const tw = parseFloat(document.getElementById('wrTarget').value);
+            if (!m || isNaN(cw) || isNaN(tw)) return;
+
+            const wins = Math.round(m * (cw / 100));
+            const streak = Math.ceil((tw * m - 100 * wins) / (100 - tw));
+
+            document.getElementById('wrRes').classList.remove('hidden');
+            document.getElementById('vWin').innerText = wins;
+            document.getElementById('vLoss').innerText = (m - wins);
+            document.getElementById('vStreak').innerText = streak > 0 ? streak + " Win" : "0 Win";
         }
     </script>
 </body>
