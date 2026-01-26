@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MLBB Analytics Pro - Final Build</title>
+    <title>MLBB Analytics Pro - Ultimate Final</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,7 +14,6 @@
         .input-pro:focus { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
         .accent-bg { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); }
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-        
         @keyframes blob {
             0% { transform: translate(0px, 0px) scale(1); }
             33% { transform: translate(30px, -50px) scale(1.1); }
@@ -22,8 +21,6 @@
             100% { transform: translate(0px, 0px) scale(1); }
         }
         .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
-        .animation-delay-4000 { animation-delay: 4s; }
     </style>
 </head>
 <body class="antialiased">
@@ -31,229 +28,157 @@
     <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-gray-950/70 border-b border-white/5">
         <div class="mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
             <div class="flex items-center gap-2">
-                <div class="accent-bg p-2 rounded-lg shadow-lg shadow-blue-500/20">
+                <div class="accent-bg p-2 rounded-lg shadow-lg">
                     <i class="fas fa-chart-line text-white"></i>
                 </div>
-                <span class="text-xl font-black tracking-tighter text-white italic uppercase">YR MLBB<span class="text-blue-500">PRO</span></span>
+                <span class="text-xl font-black tracking-tighter text-white italic uppercase">MLBB<span class="text-blue-500">PRO</span></span>
             </div>
-
-            <div class="flex items-center gap-4">
-                <div class="flex items-center bg-white/5 p-1 rounded-xl border border-white/10">
-                    <button onclick="setLang('id')" class="px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg hover:bg-white/10 transition">ID</button>
-                    <button onclick="setLang('en')" class="px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg hover:bg-white/10 transition">EN</button>
-                </div>
+            <div class="flex items-center bg-white/5 p-1 rounded-xl border border-white/10">
+                <button onclick="setLang('id')" id="btn-id" class="px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg accent-bg">ID</button>
+                <button onclick="setLang('en')" id="btn-en" class="px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg hover:bg-white/10 transition">EN</button>
             </div>
         </div>
     </nav>
 
     <section class="relative min-h-[50vh] flex items-center justify-center overflow-hidden pt-16 text-center">
         <div class="absolute inset-0">
-            <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-900/30 rounded-full filter blur-3xl opacity-30 animate-blob"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-purple-900/30 rounded-full filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+            <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-900/20 rounded-full filter blur-3xl animate-blob"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-purple-900/20 rounded-full filter blur-3xl animate-blob"></div>
         </div>
-
         <div class="relative z-10 px-4">
-            <div class="inline-flex items-center gap-2 bg-blue-500/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-blue-500/20">
-                <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
-                <span class="text-[10px] font-bold text-blue-300 uppercase tracking-widest lang-text" data-id="Sistem Analisis v9.5" data-en="Analysis System v9.5">Sistem Analisis v9.5</span>
-            </div>
-            <h1 class="text-4xl md:text-7xl font-extrabold mb-4 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">ANALYTICS ENGINE</h1>
-            <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base lang-text" data-id="Hitung kemenangan, win rate, dan bonus pangkat secara cerdas." data-en="Calculate wins, win rate, and rank bonuses intelligently.">Hitung kemenangan, win rate, dan bonus pangkat secara cerdas.</p>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 italic tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">ANALYTICS ENGINE</h1>
+            <p class="text-gray-400 max-w-xl mx-auto text-sm lang-text" data-id="Kalkulasi kemenangan & Win Rate secara presisi." data-en="Calculate wins & Win Rate precisely.">Kalkulasi kemenangan & Win Rate secara presisi.</p>
         </div>
     </section>
 
-    <main class="relative z-20 -mt-10 pb-20 px-4 md:px-12 max-w-6xl mx-auto">
+    <main class="relative z-20 -mt-10 pb-20 px-4 max-w-6xl mx-auto">
         <div class="grid xl:grid-cols-2 gap-8 mb-20">
-            <div class="glass p-8 rounded-[2.5rem] border-t-4 border-blue-500 shadow-2xl">
-                <div class="flex items-center gap-3 mb-8">
-                    <i class="fas fa-medal text-blue-400 text-xl"></i>
-                    <h2 class="text-lg font-bold tracking-tight uppercase lang-text" data-id="Kalkulator Pangkat" data-en="Rank Analytics">Kalkulator Pangkat</h2>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4 mb-6 text-left">
+            <div class="glass p-8 rounded-[2.5rem] border-t-4 border-blue-500">
+                <h2 class="text-lg font-bold tracking-tight uppercase mb-8 lang-text" data-id="Kalkulator Pangkat" data-en="Rank Calculator">Kalkulator Pangkat</h2>
+                <div class="grid grid-cols-2 gap-4 mb-6">
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest lang-text" data-id="Rank Saat Ini" data-en="Current Rank">Rank Saat Ini</label>
+                        <label class="text-[10px] font-black text-slate-500 uppercase lang-text" data-id="Rank Saat Ini" data-en="Current Rank">Rank Saat Ini</label>
                         <select id="cRank" onchange="syncRank('c')" class="input-pro w-full p-4 rounded-2xl text-sm"></select>
                     </div>
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Stars (0-5)</label>
+                        <label class="text-[10px] font-black text-slate-500 uppercase">Stars (0-5)</label>
                         <input type="number" id="cStar" oninput="syncStar('c')" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="0">
                     </div>
                 </div>
-
                 <div class="grid grid-cols-2 gap-4 mb-8 text-left">
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest lang-text" data-id="Target Rank" data-en="Target Rank">Target Rank</label>
+                        <label class="text-[10px] font-black text-slate-500 uppercase lang-text" data-id="Target Rank" data-en="Target Rank">Target Rank</label>
                         <select id="tRank" onchange="syncRank('t')" class="input-pro w-full p-4 rounded-2xl text-sm"></select>
                     </div>
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest lang-text" data-id="Target Bintang" data-en="Target Stars">Target Bintang</label>
+                        <label class="text-[10px] font-black text-slate-500 uppercase lang-text" data-id="Target Bintang" data-en="Target Stars">Target Bintang</label>
                         <input type="number" id="tStar" oninput="syncStar('t')" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="0">
                     </div>
                 </div>
-
-                <button onclick="calculatePath()" class="accent-bg w-full py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] transition duration-300">
-                    <i class="fas fa-bolt mr-2"></i><span class="lang-text" data-id="Analisis Jalur" data-en="Analyze Path">Analisis Jalur</span>
-                </button>
-
+                <button onclick="calculatePath()" class="accent-bg w-full py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] transition duration-300">Generate Hasil</button>
                 <div id="rankRes" class="hidden mt-8 p-6 rounded-3xl bg-blue-500/10 border border-blue-500/20">
                     <div class="grid grid-cols-3 gap-2 text-center mb-4">
-                        <div class="p-2"><i class="fas fa-flag text-blue-400 text-xs mb-1"></i><p class="text-[8px] text-slate-500 uppercase font-bold">Net Win</p><p id="netWin" class="text-xl font-black text-blue-400"></p></div>
-                        <div class="p-2"><i class="fas fa-shield text-yellow-400 text-xs mb-1"></i><p class="text-[8px] text-slate-500 uppercase font-bold">Bonus</p><p id="starBonus" class="text-xl font-black text-yellow-400"></p></div>
-                        <div class="p-2"><i class="fas fa-star text-emerald-400 text-xs mb-1"></i><p class="text-[8px] text-slate-500 uppercase font-bold">Grading</p><p id="gradingBonus" class="text-xl font-black text-emerald-400"></p></div>
+                        <div class="p-2"><p class="text-[8px] text-slate-500 uppercase font-bold">Net Win</p><p id="netWin" class="text-xl font-black text-blue-400"></p></div>
+                        <div class="p-2"><p class="text-[8px] text-slate-500 uppercase font-bold">Bonus</p><p id="starBonus" class="text-xl font-black text-yellow-400"></p></div>
+                        <div class="p-2"><p class="text-[8px] text-slate-500 uppercase font-bold">Grading</p><p id="gradingBonus" class="text-xl font-black text-emerald-400"></p></div>
                     </div>
-                    <p id="rankSummary" class="text-xs text-center text-slate-300 italic border-t border-white/10 pt-4 leading-relaxed"></p>
+                    <p id="rankSummary" class="text-xs text-center text-slate-300 italic border-t border-white/10 pt-4"></p>
                 </div>
             </div>
 
-            <div class="glass p-8 rounded-[2.5rem] border-t-4 border-emerald-500 shadow-2xl">
-                <div class="flex items-center gap-3 mb-8 text-left">
-                    <i class="fas fa-percentage text-emerald-400 text-xl"></i>
-                    <h2 class="text-lg font-bold tracking-tight uppercase lang-text" data-id="Statistik Win Rate" data-en="WR Statistics">Statistik Win Rate</h2>
-                </div>
-                <div class="space-y-5 mb-8 text-left">
+            <div class="glass p-8 rounded-[2.5rem] border-t-4 border-emerald-500">
+                <h2 class="text-lg font-bold tracking-tight uppercase mb-8 lang-text" data-id="Analisis Win Rate" data-en="WR Analysis">Analisis Win Rate</h2>
+                <div class="space-y-5 mb-8">
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest lang-text" data-id="Total Match" data-en="Total Matches">Total Match</label>
-                        <input type="number" id="wrMatch" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="Contoh: 1000">
+                        <label class="text-[10px] font-black text-slate-500 uppercase lang-text" data-id="Total Match" data-en="Total Matches">Total Match</label>
+                        <input type="number" id="wrMatch" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="0">
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-2">
-                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Curr WR %</label>
+                            <label class="text-[10px] font-black text-slate-500 uppercase">Curr WR %</label>
                             <input type="number" id="wrCurrent" step="0.01" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="00.00">
                         </div>
                         <div class="space-y-2">
-                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Target WR %</label>
+                            <label class="text-[10px] font-black text-slate-500 uppercase">Target WR %</label>
                             <input type="number" id="wrTarget" step="0.01" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="00.00">
                         </div>
                     </div>
                 </div>
-                <button onclick="calcWR()" class="bg-white text-slate-900 w-full py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-slate-100 transition shadow-lg">Scan WR Status</button>
+                <button onclick="calcWR()" class="bg-white text-slate-900 w-full py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-slate-100 transition">Scan WR Status</button>
                 <div id="wrRes" class="hidden mt-8 space-y-4 text-center">
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="p-5 bg-blue-500/10 rounded-2xl border border-blue-500/20"><p id="vWin" class="text-2xl font-black text-blue-400"></p><p class="text-[9px] text-slate-400 uppercase font-bold">Total Wins</p></div>
-                        <div class="p-5 bg-red-500/10 rounded-2xl border border-red-500/20"><p id="vLoss" class="text-2xl font-black text-red-400"></p><p class="text-[9px] text-slate-400 uppercase font-bold">Total Loss</p></div>
+                        <div class="p-5 bg-blue-500/10 rounded-2xl border border-blue-500/20"><p id="vWin" class="text-2xl font-black text-blue-400"></p><p class="text-[9px] text-slate-400 font-bold">WINS</p></div>
+                        <div class="p-5 bg-red-500/10 rounded-2xl border border-red-500/20"><p id="vLoss" class="text-2xl font-black text-red-400"></p><p class="text-[9px] text-slate-400 font-bold">LOSS</p></div>
                     </div>
-                    <div class="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-3xl"><p id="vStreak" class="text-4xl font-black text-emerald-400"></p></div>
+                    <div class="p-6 bg-emerald-500/10 rounded-3xl"><p id="vStreak" class="text-4xl font-black text-emerald-400"></p></div>
                 </div>
             </div>
         </div>
 
-        <div class="max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto space-y-4 mb-20 text-left">
-            <div class="mb-10 text-center">
-                <h2 class="text-3xl font-bold text-white mb-2 tracking-tight">FAQ</h2>
-                <p class="text-slate-500 text-sm italic uppercase tracking-widest">Frequently Asked Questions</p>
-            </div>
-
-            <details class="group rounded-2xl border border-white/10 overflow-hidden bg-white/5 shadow-sm hover:border-blue-500/30 transition-all duration-300">
+        <div class="max-w-3xl mx-auto space-y-4 mb-20">
+            <h2 class="text-center text-3xl font-bold mb-10">FAQ</h2>
+            <details class="group rounded-2xl border border-white/10 overflow-hidden bg-white/5 transition-all duration-300">
                 <summary class="flex cursor-pointer list-none items-center justify-between px-6 py-5 font-semibold text-white hover:bg-white/5 transition-colors group-open:bg-blue-500/10">
-                    <span class="flex items-center gap-3">
-                        <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500 text-white font-bold text-sm">1</span>
-                        <span class="lang-text" data-id="Apa kegunaan utama aplikasi ini?" data-en="What is the main use of this app?">Apa kegunaan utama aplikasi ini?</span>
-                    </span>
+                    <span class="lang-text" data-id="Apa kegunaan utama aplikasi ini?" data-en="What is this app for?">Apa kegunaan utama aplikasi ini?</span>
                     <i class="fas fa-chevron-down text-blue-400 transition-transform duration-300 group-open:rotate-180"></i>
                 </summary>
-                <div class="px-10 py-5 text-sm text-slate-300 leading-relaxed bg-black/20 lang-text" 
-                     data-id="Aplikasi ini dirancang untuk membantu pemain Mobile Legends menghitung estimasi jumlah kemenangan (win streak) yang diperlukan untuk mencapai target Rank atau Win Rate tertentu secara akurat."
-                     data-en="This app is designed to help Mobile Legends players estimate the required number of wins (win streak) to reach a specific Rank or Win Rate accurately.">
-                    Aplikasi ini dirancang untuk membantu pemain Mobile Legends menghitung estimasi jumlah kemenangan (win streak) yang diperlukan untuk mencapai target Rank atau Win Rate tertentu secara akurat.
-                </div>
-            </details>
-
-            <details class="group rounded-2xl border border-white/10 overflow-hidden bg-white/5 shadow-sm hover:border-blue-500/30 transition-all duration-300">
-                <summary class="flex cursor-pointer list-none items-center justify-between px-6 py-5 font-semibold text-white hover:bg-white/5 transition-colors group-open:bg-blue-500/10">
-                    <span class="flex items-center gap-3">
-                        <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500 text-white font-bold text-sm">2</span>
-                        <span class="lang-text" data-id="Mengapa bonus bintang hanya ada di bawah Mythic?" data-en="Why is star bonus only for below Mythic?">Mengapa bonus bintang hanya ada di bawah Mythic?</span>
-                    </span>
-                    <i class="fas fa-chevron-down text-blue-400 transition-transform duration-300 group-open:rotate-180"></i>
-                </summary>
-                <div class="px-10 py-5 text-sm text-slate-300 leading-relaxed bg-black/20 lang-text" 
-                     data-id="Dalam sistem MLBB, Star Protection dan Bonus Bintang hanya berlaku hingga rank Legend. Di rank Mythic ke atas, sistem menggunakan akumulasi bintang murni tanpa bonus proteksi standar."
-                     data-en="In the MLBB system, Star Protection and Star Bonuses only apply up to Legend rank. In Mythic and above, the system uses pure star accumulation without standard protection bonuses.">
-                    Dalam sistem MLBB, Star Protection dan Bonus Bintang hanya berlaku hingga rank Legend. Di rank Mythic ke atas, sistem menggunakan akumulasi bintang murni tanpa bonus proteksi standar.
-                </div>
-            </details>
-
-            <details class="group rounded-2xl border border-white/10 overflow-hidden bg-white/5 shadow-sm hover:border-blue-500/30 transition-all duration-300">
-                <summary class="flex cursor-pointer list-none items-center justify-between px-6 py-5 font-semibold text-white hover:bg-white/5 transition-colors group-open:bg-blue-500/10">
-                    <span class="flex items-center gap-3">
-                        <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500 text-white font-bold text-sm">3</span>
-                        <span class="lang-text" data-id="Bagaimana cara kerja perhitungan Win Rate?" data-en="How does the Win Rate calculation work?">Bagaimana cara kerja perhitungan Win Rate?</span>
-                    </span>
-                    <i class="fas fa-chevron-down text-blue-400 transition-transform duration-300 group-open:rotate-180"></i>
-                </summary>
-                <div class="px-10 py-5 text-sm text-slate-300 leading-relaxed bg-black/20 lang-text" 
-                     data-id="Kalkulator kami menggunakan rumus aljabar untuk mencari variabel kemenangan tanpa kekalahan yang dibutuhkan agar persentase kemenangan total Anda mencapai angka target yang diinginkan."
-                     data-en="Our calculator uses an algebraic formula to find the required variable of wins without losses so that your total win percentage reaches the desired target number.">
-                    Kalkulator kami menggunakan rumus aljabar untuk mencari variabel kemenangan tanpa kekalahan yang dibutuhkan agar persentase kemenangan total Anda mencapai angka target yang diinginkan.
-                </div>
+                <div class="px-6 py-5 text-sm text-slate-300 bg-black/20">Aplikasi ini menghitung estimasi kemenangan (win streak) yang diperlukan untuk mencapai target Rank atau Win Rate di Mobile Legends.</div>
             </details>
         </div>
 
-        <section class="py-16 px-6 accent-bg rounded-[3rem] text-center shadow-2xl shadow-blue-500/20">
-            <h2 class="text-3xl font-bold text-white mb-4 lang-text" data-id="Ingin Mulai Analisis?" data-en="Start Analyzing?">Ingin Mulai Analisis?</h2>
-            <p class="text-blue-100 mb-8 max-w-lg mx-auto lang-text" data-id="Masukkan data akun Anda sekarang dan lihat estimasi perjalanan rank Anda." data-en="Enter your account data now and see your rank journey estimation.">Masukkan data akun Anda sekarang dan lihat estimasi perjalanan rank Anda.</p>
-            <a href="#" class="inline-block px-10 py-4 bg-white text-blue-600 font-bold rounded-2xl hover:bg-blue-50 transition shadow-lg">Start Now</a>
+        <section class="py-16 px-6 accent-bg rounded-[3rem] text-center mb-20">
+            <h2 class="text-3xl font-bold text-white mb-4 lang-text" data-id="Siap untuk Push Rank?" data-en="Ready to push rank?">Siap untuk Push Rank?</h2>
+            <button class="px-10 py-4 bg-white text-blue-600 font-bold rounded-2xl hover:scale-105 transition">Start Now</button>
         </section>
     </main>
 
-    <footer class="py-8 px-6 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-white/5 transition-colors">
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-    <div class="flex items-center gap-2">
-      <div class="bg-gradient-to-br from-blue-500 to-purple-600 p-1.5 rounded-lg shadow-lg shadow-blue-500/20">
+    <footer class="py-8 px-6 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-white/5">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-2">
+          <div class="bg-gradient-to-br from-blue-500 to-purple-600 p-1.5 rounded-lg">
+            <i class="fas fa-chart-line text-white text-xs"></i>
+          </div>
+          <span class="font-black text-gray-900 dark:text-white italic tracking-tighter uppercase">MLBB<span class="text-blue-500">PRO</span></span>
+        </div>
+        <div class="flex gap-4">
+          <a href="https://github.com/Ceyhee" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-blue-600 hover:text-white transition-all"><i class="fab fa-github"></i></a>
+          <a href="https://www.instagram.com/ajiee.zip?igsh=MXI3a3V4cm53dnlxeQ==" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-pink-600 hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/share/1aEQbApGw5/" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-blue-700 hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <p class="text-gray-500 dark:text-slate-500 text-[10px] font-bold uppercase tracking-widest">© 2026 M. AJI SUKMA &bull; ALL RIGHTS RESERVED</p>
       </div>
-      <span class="font-black text-gray-900 dark:text-white italic tracking-tighter uppercase">YR MLBB<span class="text-blue-500">PRO</span></span>
-    </div>
-
-    <div class="flex gap-4">
-      <a href="https://github.com/Ceyhee" target="_blank" rel="noopener noreferrer" 
-         class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-sm">
-        <i class="fab fa-github text-xl"></i>
-      </a>
-      
-      <a href="https://www.instagram.com/ajiee.zip?igsh=MXI3a3V4cm53dnlxeQ==" target="_blank" rel="noopener noreferrer" 
-         class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-pink-600 hover:text-white transition-all duration-300 shadow-sm">
-        <i class="fab fa-instagram text-xl"></i>
-      </a>
-
-      <a href="https://www.facebook.com/share/1aEQbApGw5/" target="_blank" rel="noopener noreferrer" 
-         class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 shadow-sm">
-        <i class="fab fa-facebook-f text-lg"></i>
-      </a>
-    </div>
-
-    <p class="text-gray-500 dark:text-slate-500 text-[10px] font-bold uppercase tracking-widest">
-      © 2026 AJI SUKMA &bull; ALL RIGHTS RESERVED
-    </p>
-  </div>
-</footer>
-
+    </footer>
 
     <script>
         const tiers = [
             { name: "Grandmaster V", base: 0, mythic: false, defaultS: 0 }, { name: "Grandmaster IV", base: 4, mythic: false, defaultS: 0 }, { name: "Grandmaster III", base: 8, mythic: false, defaultS: 0 }, { name: "Grandmaster II", base: 12, mythic: false, defaultS: 0 }, { name: "Grandmaster I", base: 16, mythic: false, defaultS: 0 },
             { name: "Epic V", base: 20, mythic: false, defaultS: 0 }, { name: "Epic IV", base: 25, mythic: false, defaultS: 0 }, { name: "Epic III", base: 30, mythic: false, defaultS: 0 }, { name: "Epic II", base: 35, mythic: false, defaultS: 0 }, { name: "Epic I", base: 40, mythic: false, defaultS: 0 },
             { name: "Legend V", base: 45, mythic: false, defaultS: 0 }, { name: "Legend IV", base: 50, mythic: false, defaultS: 0 }, { name: "Legend III", base: 55, mythic: false, defaultS: 0 }, { name: "Legend II", base: 60, mythic: false, defaultS: 0 }, { name: "Legend I", base: 65, mythic: false, defaultS: 0 },
-            { name: "Mythic", base: 70, mythic: true, defaultS: 0 }, { name: "Mythic Honor", base: 70, mythic: true, defaultS: 25 }, { name: "Mythic Glory", base: 70, mythic: true, def            let s = parseInt(starIn.value);
-            
-            if (isNaN(s)) return;
+            { name: "Mythic", base: 70, mythic: true, defaultS: 0 }, { name: "Mythic Honor", base: 70, mythic: true, defaultS: 25 }, { name: "Mythic Glory", base: 70, mythic: true, defaultS: 50 }, { name: "Mythic Immortal", base: 70, mythic: true, defaultS: 100 }
+        ];
 
-            // Jika Rank saat ini bukan Mythic, dan input > 5, jangan langsung pindah ke Mythic jika user tidak mau
-            // Tapi khusus untuk Mythic (S > 5), kita auto-detect
-            if (s >= 100) rankSel.value = 18;
-            else if (s >= 50) rankSel.value = 17;
-            else if (s >= 25) rankSel.value = 16;
-            else if (s > 5) rankSel.value = 15;
-            // Jika s <= 5, kita biarkan di tier yang dipilih user kecuali user baru pindah rank
+        const cSel = document.getElementById('cRank');
+        const tSel = document.getElementById('tRank');
+        
+        // POPULATE DROPDOWNS
+        tiers.forEach((t, i) => { 
+            const opt = `<option value="${i}">${t.name}</option>`;
+            cSel.innerHTML += opt; tSel.innerHTML += opt;
+        });
+
+        function syncStar(type) {
+            const starIn = document.getElementById(type + 'Star');
+            const rankSel = document.getElementById(type + 'Rank');
+            let val = parseInt(starIn.value) || 0;
+            let currentIdx = parseInt(rankSel.value);
+            if (currentIdx < 15 && val > 5) { starIn.value = 5; val = 5; }
+            if (val >= 100) rankSel.value = 18; else if (val >= 50) rankSel.value = 17; else if (val >= 25) rankSel.value = 16; else if (val > 5) rankSel.value = 15;
         }
 
-        // FUNGSI 2: Pangkat berubah -> Bintang berubah otomatis
-        function syncFromRank(type) {
+        function syncRank(type) {
             const rankSel = document.getElementById(type + 'Rank');
             const starIn = document.getElementById(type + 'Star');
             const tier = tiers[parseInt(rankSel.value)];
-
-            // Set bintang ke nilai default tier tersebut (misal Honor otomatis jadi 25)
             starIn.value = tier.defaultS;
         }
 
@@ -262,26 +187,23 @@
             const tIdx = parseInt(tSel.value);
             const cS = parseInt(document.getElementById('cStar').value) || 0;
             const tS = parseInt(document.getElementById('tStar').value) || 0;
-
             let diff = (tiers[tIdx].base + tS) - (tiers[cIdx].base + cS);
-            let starBonus = (!tiers[cIdx].mythic && diff > 0) ? Math.floor(diff * 0.15) : 0;
-            let gradingBonus = (cIdx <= 14 && tIdx >= 15) ? 5 : 0;
-
-            const resDiv = document.getElementById('rankRes');
-            resDiv.classList.remove('hidden');
-
-            if (diff <= 0) {
-                document.getElementById('netWin').innerText = "0";
-                document.getElementById('rankSummary').innerText = "Target sudah tercapai!";
-                return;
-            }
-
+            let starsUnderMythic = (tiers[cIdx].base + cS < 70) ? Math.min(diff, 70 - (tiers[cIdx].base + cS)) : 0;
+            let starBonus = starsUnderMythic > 0 ? Math.floor(starsUnderMythic * 0.20) : 0;
+            let gradingBonus = (cIdx <= 14 && tIdx >= 15 && tS >= 15) ? 5 : 0;
+            document.getElementById('rankRes').classList.remove('hidden');
+            if (diff <= 0) { document.getElementById('rankSummary').innerText = "Target Reached!"; return; }
             document.getElementById('netWin').innerText = diff;
-            document.getElementById('starBonus').innerText = starBonus > 0 ? "+" + starBonus : "0";
-            document.getElementById('gradingBonus').innerText = gradingBonus > 0 ? "+" + gradingBonus : "0";
-            
-            let final = diff - starBonus - gradingBonus;
-            document.getElementById('rankSummary').innerHTML = `Anda membutuhkan sekitar <span class="text-blue-400 font-black">${final} Kemenangan Bersih</span> untuk mencapai target.`;
+            document.getElementById('starBonus').innerText = "+" + starBonus;
+            document.getElementById('gradingBonus').innerText = "+" + gradingBonus;
+            document.getElementById('rankSummary').innerHTML = `Butuh sekitar <strong>${diff - starBonus - gradingBonus} Win</strong>.`;
+        }
+
+        function setLang(lang) {
+            const isID = lang === 'id';
+            document.getElementById('btn-id').className = isID ? "px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg accent-bg" : "px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg hover:bg-white/10 transition text-slate-400";
+            document.getElementById('btn-en').className = !isID ? "px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg accent-bg" : "px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg hover:bg-white/10 transition text-slate-400";
+            document.querySelectorAll('.lang-text').forEach(el => el.innerText = el.getAttribute('data-' + lang));
         }
 
         function calcWR() {
@@ -289,15 +211,16 @@
             const cw = parseFloat(document.getElementById('wrCurrent').value);
             const tw = parseFloat(document.getElementById('wrTarget').value);
             if (!m || isNaN(cw) || isNaN(tw)) return;
-
             const wins = Math.round(m * (cw / 100));
             const streak = Math.ceil((tw * m - 100 * wins) / (100 - tw));
-
             document.getElementById('wrRes').classList.remove('hidden');
             document.getElementById('vWin').innerText = wins;
             document.getElementById('vLoss').innerText = (m - wins);
-            document.getElementById('vStreak').innerText = streak > 0 ? streak + " Win" : "0 Win";
+            document.getElementById('vStreak').innerText = (streak > 0 ? streak : 0) + " WIN";
         }
+
+        // INIT LOAD
+        syncRank('c'); syncRank('t');
     </script>
 </body>
 </html>
