@@ -334,53 +334,15 @@
                     Kalkulator kami menggunakan rumus aljabar untuk mencari variabel kemenangan tanpa kekalahan yang dibutuhkan agar persentase kemenangan total Anda mencapai angka target yang diinginkan.
                 </div>
             </details>
-        </div>
-
-        <section class="py-16 px-6 accent-bg rounded-[3rem] text-center shadow-2xl shadow-blue-500/20">
-            <h2 class="text-3xl font-bold text-white mb-4 lang-text" data-id="Ingin Mulai Analisis?" data-en="Start Analyzing?">Ingin Mulai Analisis?</h2>
-            <p class="text-blue-100 mb-8 max-w-lg mx-auto lang-text" data-id="Masukkan data akun Anda sekarang dan lihat estimasi perjalanan rank Anda." data-en="Enter your account data now and see your rank journey estimation.">Masukkan data akun Anda sekarang dan lihat estimasi perjalanan rank Anda.</p>
-            <a href="#" class="inline-block px-10 py-4 bg-white text-blue-600 font-bold rounded-2xl hover:bg-blue-50 transition shadow-lg">Start Now</a>
-        </section>
-    </main>
-
-    <footer class="py-8 px-6 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-white/5 transition-colors">
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-    <div class="flex items-center gap-2">
-      <div class="bg-gradient-to-br from-blue-500 to-purple-600 p-1.5 rounded-lg shadow-lg shadow-blue-500/20">
-      </div>
-      <span class="font-black text-gray-900 dark:text-white italic tracking-tighter uppercase">YR MLBB<span class="text-blue-500">PRO</span></span>
-    </div>
-
-    <div class="flex gap-4">
-      <a href="https://github.com/Ceyhee" target="_blank" rel="noopener noreferrer" 
-         class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-sm">
-        <i class="fab fa-github text-xl"></i>
-      </a>
-      
-      <a href="https://www.instagram.com/ajiee.zip?igsh=MXI3a3V4cm53dnlxeQ==" target="_blank" rel="noopener noreferrer" 
-         class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-pink-600 hover:text-white transition-all duration-300 shadow-sm">
-        <i class="fab fa-instagram text-xl"></i>
-      </a>
-
-      <a href="https://www.facebook.com/share/1aEQbApGw5/" target="_blank" rel="noopener noreferrer" 
-         class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 shadow-sm">
-        <i class="fab fa-facebook-f text-lg"></i>
-      </a>
-    </div>
-
-    <p class="text-gray-500 dark:text-slate-500 text-[10px] font-bold uppercase tracking-widest">
-      © 2026 AJI SUKMA &bull; ALL RIGHTS RESERVED
-    </p>
-  </div>
-</footer>
-
-
-    <script>
+ <script>
         const tiers = [
             { name: "Grandmaster V", base: 0, mythic: false, defaultS: 0 }, { name: "Grandmaster IV", base: 4, mythic: false, defaultS: 0 }, { name: "Grandmaster III", base: 8, mythic: false, defaultS: 0 }, { name: "Grandmaster II", base: 12, mythic: false, defaultS: 0 }, { name: "Grandmaster I", base: 16, mythic: false, defaultS: 0 },
             { name: "Epic V", base: 20, mythic: false, defaultS: 0 }, { name: "Epic IV", base: 25, mythic: false, defaultS: 0 }, { name: "Epic III", base: 30, mythic: false, defaultS: 0 }, { name: "Epic II", base: 35, mythic: false, defaultS: 0 }, { name: "Epic I", base: 40, mythic: false, defaultS: 0 },
             { name: "Legend V", base: 45, mythic: false, defaultS: 0 }, { name: "Legend IV", base: 50, mythic: false, defaultS: 0 }, { name: "Legend III", base: 55, mythic: false, defaultS: 0 }, { name: "Legend II", base: 60, mythic: false, defaultS: 0 }, { name: "Legend I", base: 65, mythic: false, defaultS: 0 },
-            { name: "Mythic", base: 70, mythic: true, defaultS: 0 }, { name: "Mythic Honor", base: 70, mythic: true, defaultS: 25 }, { name: "Mythic Glory", base: 70, mythic: true, defaultS: 0 }, { name: "Mythic Honor", base: 70, mythic: true, defaultS: 25 }, { name: "Mythic Glory", base: 70, mythic: true, defaultS: 50 }, { name: "Mythic Immortal", base: 70, mythic: true, defaultS: 100 }
+            { name: "Mythic", base: 70, mythic: true, defaultS: 0 }, 
+            { name: "Mythic Honor", base: 70, mythic: true, defaultS: 25 }, 
+            { name: "Mythic Glory", base: 70, mythic: true, defaultS: 50 }, 
+            { name: "Mythic Immortal", base: 70, mythic: true, defaultS: 100 }
         ];
 
         const cSel = document.getElementById('cRank');
@@ -396,9 +358,9 @@
             let val = parseInt(starIn.value) || 0;
             let currentIdx = parseInt(rankSel.value);
             if (currentIdx < 15 && val > 5) { starIn.value = 5; val = 5; }
-            if (val >= 100) rankSel.value = 18;
-            else if (val >= 50) rankSel.value = 17;
-            else if (val >= 25) rankSel.value = 16;
+            if (val >= 100) rankSel.value = 18; 
+            else if (val >= 50) rankSel.value = 17; 
+            else if (val >= 25) rankSel.value = 16; 
             else if (val > 5) rankSel.value = 15;
         }
 
@@ -414,7 +376,6 @@
             const tIdx = parseInt(tSel.value);
             const cS = parseInt(document.getElementById('cStar').value) || 0;
             const tS = parseInt(document.getElementById('tStar').value) || 0;
-
             let totalCurrent = tiers[cIdx].base + cS;
             let totalTarget = tiers[tIdx].base + tS;
             let diff = totalTarget - totalCurrent;
@@ -425,66 +386,61 @@
 
             document.getElementById('rankRes').classList.remove('hidden');
             if (diff <= 0) { document.getElementById('rankSummary').innerText = "Target Reached!"; return; }
-
             document.getElementById('netWin').innerText = diff;
-            document.getElementById('starBonus').innerText = starBonus > 0 ? "+" + starBonus : "0";
-            document.getElementById('gradingBonus').innerText = gradingBonus > 0 ? "+" + gradingBonus : "0";
-            
-            let final = diff - starBonus - gradingBonus;
-            document.getElementById('rankSummary').innerHTML = `Estimasi: <span class="text-blue-400 font-black">${final} Kemenangan Bersih</span>.`;
+            document.getElementById('starBonus').innerText = "+" + starBonus;
+            document.getElementById('gradingBonus').innerText = "+" + gradingBonus;
+            document.getElementById('rankSummary').innerHTML = `Estimasi: <strong>${diff - starBonus - gradingBonus} Kemenangan Bersih</strong>.`;
         }
 
         function setLang(lang) {
-            document.querySelectorAll('.lang-text').forEach(el => {
-                el.innerText = el.getAttribute('data-' + lang);
-            });
+            const isID = lang === 'id';
+            document.getElementById('btn-id').className = isID ? "px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg accent-bg transition-all" : "px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg hover:bg-white/10 transition-all text-slate-400";
+            document.getElementById('btn-en').className = !isID ? "px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg accent-bg transition-all" : "px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg hover:bg-white/10 transition-all text-slate-400";
+            document.querySelectorAll('.lang-text').forEach(el => el.innerText = el.getAttribute('data-' + lang));
         }
 
-function calcWR() {
-    const m = parseInt(document.getElementById('wrMatch').value);
-    const cw = parseFloat(document.getElementById('wrCurrent').value);
-    const tw = parseFloat(document.getElementById('wrTarget').value);
-    const currentLang = document.getElementById('btn-id').classList.contains('accent-bg') ? 'id' : 'en';
-    
-    if (!m || isNaN(cw) || isNaN(tw)) return;
+        function calcWR() {
+            const m = parseInt(document.getElementById('wrMatch').value);
+            const cw = parseFloat(document.getElementById('wrCurrent').value);
+            const tw = parseFloat(document.getElementById('wrTarget').value);
+            const isID = document.getElementById('btn-id').classList.contains('accent-bg');
+            
+            if (!m || isNaN(cw) || isNaN(tw)) return;
+            if (tw >= 100) return alert("Target 100% mustahil!");
 
-    const wins = Math.round(m * (cw / 100));
-    const loss = m - wins;
-    const streakNeeded = Math.ceil((tw * m - 100 * wins) / (100 - tw));
+            const wins = Math.round(m * (cw / 100));
+            const loss = m - wins;
+            const streakNeeded = Math.ceil((tw * m - 100 * wins) / (100 - tw));
 
-    document.getElementById('wrRes').classList.remove('hidden');
-    document.getElementById('vWin').innerText = wins;
-    document.getElementById('vLoss').innerText = loss;
-    document.getElementById('vStreak').innerText = (streakNeeded > 0 ? streakNeeded : 0) + " WIN";
+            document.getElementById('wrRes').classList.remove('hidden');
+            document.getElementById('vWin').innerText = wins;
+            document.getElementById('vLoss').innerText = loss;
+            document.getElementById('vStreak').innerText = (streakNeeded > 0 ? streakNeeded : 0) + " WIN";
 
-    // Pesan Utama
-    const msgMain = currentLang === 'id' 
-        ? `Dari total ${m} match, kamu sudah menang ${wins} kali. Untuk capai ${tw}%, kamu harus menang bersih sebanyak:` 
-        : `Out of ${m} matches, you have won ${wins} times. To reach ${tw}%, you need a straight win of:`;
-    document.getElementById('vMsgMain').innerText = msgMain;
+            document.getElementById('vMsgMain').innerText = isID 
+                ? `Dari total ${m} match, kamu sudah menang ${wins} kali. Untuk capai ${tw}%, butuh menang bersih:`
+                : `Out of ${m} matches, you won ${wins} times. To reach ${tw}%, you need a net win of:`;
 
-    // Status & Advice Logic
-    const statusEl = document.getElementById('vAccountStatus');
-    const adviceEl = document.getElementById('vAdvice');
-    
-    if (cw >= 60) {
-        statusEl.innerText = "PRO PLAYER / GOSS";
-        statusEl.className = "px-3 py-1 rounded-full text-[10px] font-black uppercase bg-emerald-500 text-white";
-        adviceEl.innerText = currentLang === 'id' ? "Gila, WR kamu ngeri! Pertahankan performa ini, kamu layak di tier Immortal." : "Insane WR! Keep it up, you belong in the Immortal tier.";
-    } else if (cw >= 55) {
-        statusEl.innerText = "COMPETITIVE";
-        statusEl.className = "px-3 py-1 rounded-full text-[10px] font-black uppercase bg-blue-500 text-white";
-        adviceEl.innerText = currentLang === 'id' ? "Akun lumayan sehat. Sedikit lagi konsisten biar bisa masuk jajaran pro." : "Pretty healthy account. Be more consistent to join the pro ranks.";
-    } else if (cw >= 50) {
-        statusEl.innerText = "NOOB DETECTED";
-        statusEl.className = "px-3 py-1 rounded-full text-[10px] font-black uppercase bg-yellow-500 text-black";
-        adviceEl.innerText = currentLang === 'id' ? "Main pake tangan apa pake kaki? WR nanggung begini mending belajar laning lagi deh." : "Playing with hands or feet? With this mediocre WR, you better learn laning again.";
-    } else {
-        statusEl.innerText = "BOT / DISASTER";
-        statusEl.className = "px-3 py-1 rounded-full text-[10px] font-black uppercase bg-red-500 text-white";
-        adviceEl.innerText = currentLang === 'id' ? "Fix ini mah beban tim! Lu bot apa gimana? Mending hapus game atau main lawan komputer aja." : "Confirmed team burden! Are you a bot? Better delete the game or just play vs AI.";
-    }
-}
+            const statusEl = document.getElementById('vAccountStatus');
+            const adviceEl = document.getElementById('vAdvice');
+            
+            if (cw >= 60) {
+                statusEl.innerText = "PRO PLAYER / GOD"; statusEl.className = "px-3 py-1 rounded-full text-[10px] font-black uppercase bg-emerald-500 text-white";
+                adviceEl.innerText = isID ? "Gila, WR kamu ngeri! Pertahankan!" : "Insane WR! Keep it up!";
+            } else if (cw >= 55) {
+                statusEl.innerText = "COMPETITIVE"; statusEl.className = "px-3 py-1 rounded-full text-[10px] font-black uppercase bg-blue-500 text-white";
+                adviceEl.innerText = isID ? "Akun lumayan sehat. Sedikit lagi konsisten." : "Pretty healthy account. Be more consistent.";
+            } else if (cw >= 50) {
+                statusEl.innerText = "NOOB DETECTED"; statusEl.className = "px-3 py-1 rounded-full text-[10px] font-black uppercase bg-yellow-500 text-black";
+                adviceEl.innerText = isID ? "Main pake tangan apa pake kaki? Belajar laning lagi deh." : "Playing with hands or feet? Better learn laning again.";
+            } else {
+                statusEl.innerText = "BOT / DISASTER"; statusEl.className = "px-3 py-1 rounded-full text-[10px] font-black uppercase bg-red-500 text-white";
+                adviceEl.innerText = isID ? "Fix ini mah beban tim! Mending hapus game." : "Confirmed team burden! Better delete the game.";
+            }
+        }
+
+        // Initialize default view
+        syncRank('c'); syncRank('t');
     </script>
 </body>
 </html>
