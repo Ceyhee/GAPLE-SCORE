@@ -80,6 +80,65 @@
                         <input type="number" id="cStar" oninput="syncStar('c')" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="0">
                     </div>
                 </div>
+                
+
+<div class="glass p-8 rounded-[2.5rem] border-t-4 border-emerald-500 shadow-2xl relative overflow-hidden">
+    <div class="flex items-center gap-3 mb-8 text-left">
+        <i class="fas fa- skull-crossbones text-emerald-400 text-xl"></i>
+        <h2 class="text-lg font-bold tracking-tight uppercase lang-text" data-id="Analisis Performa Akun" data-en="Account Performance Analytics">Analisis Performa Akun</h2>
+    </div>
+
+    <div class="space-y-5 mb-8 text-left">
+        <div class="space-y-2">
+            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest lang-text" data-id="Total Pertandingan" data-en="Total Matches">Total Pertandingan</label>
+            <input type="number" id="wrMatch" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="Contoh: 1000">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-2">
+                <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Current WR (%)</label>
+                <input type="number" id="wrCurrent" step="0.01" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="50.00">
+            </div>
+            <div class="space-y-2">
+                <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Target WR (%)</label>
+                <input type="number" id="wrTarget" step="0.01" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="60.00">
+            </div>
+        </div>
+    </div>
+
+    <button onclick="calcWR()" class="bg-white text-slate-900 w-full py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-slate-100 transition shadow-lg active:scale-95 duration-200">
+        <i class="fas fa-search mr-2"></i>Analyze Account
+    </button>
+
+    <div id="wrRes" class="hidden mt-8 space-y-6">
+        <div class="grid grid-cols-2 gap-4">
+            <div class="p-4 bg-blue-500/5 rounded-2xl border border-blue-500/10 text-center">
+                <p id="vWin" class="text-2xl font-black text-blue-400"></p>
+                <p class="text-[9px] text-slate-400 uppercase font-bold lang-text" data-id="Total Menang" data-en="Total Wins">Total Menang</p>
+            </div>
+            <div class="p-4 bg-red-500/5 rounded-2xl border border-red-500/10 text-center">
+                <p id="vLoss" class="text-2xl font-black text-red-400"></p>
+                <p class="text-[9px] text-slate-400 uppercase font-bold lang-text" data-id="Total Kalah" data-en="Total Losses">Total Kalah</p>
+            </div>
+        </div>
+
+        <div class="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-[2rem] text-center">
+            <p class="text-[10px] text-emerald-400 font-bold uppercase mb-2 tracking-widest lang-text" data-id="Misi Kemenangan" data-en="Victory Mission">Misi Kemenangan</p>
+            <h3 id="vMsgMain" class="text-sm md:text-base text-white font-medium mb-3"></h3>
+            <p id="vStreak" class="text-5xl font-black text-emerald-400"></p>
+        </div>
+
+        <div class="p-6 bg-white/5 rounded-2xl border border-white/10 space-y-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-2 border-b border-white/5 pb-3">
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest lang-text" data-id="Rating Akun" data-en="Account Rating">Rating Akun</span>
+                <span id="vAccountStatus" class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tighter"></span>
+            </div>
+            <div class="space-y-1">
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest lang-text" data-id="Saran Sistem" data-en="System Advice">Saran Sistem</p>
+                <p id="vAdvice" class="text-xs text-slate-300 italic leading-relaxed"></p>
+            </div>
+        </div>
+    </div>
+</div>
 
                 <div class="grid grid-cols-2 gap-4 mb-8 text-left">
                     <div class="space-y-2">
@@ -106,73 +165,6 @@
                 </div>
             </div>
 
-            <div class="glass p-8 rounded-[2.5rem] border-t-4 border-emerald-500 shadow-2xl relative overflow-hidden">
-    <div class="flex items-center gap-3 mb-8 text-left">
-        <i class="fas fa-chart-pie text-emerald-400 text-xl"></i>
-        <h2 class="text-lg font-bold tracking-tight uppercase lang-text" data-id="Analisis Win Rate Super Detail" data-en="Super Detail WR Analytics">Analisis Win Rate Super Detail</h2>
-    </div>
-
-    <div class="space-y-5 mb-8 text-left">
-        <div class="space-y-2">
-            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest lang-text" data-id="Total Pertandingan" data-en="Total Matches">Total Pertandingan</label>
-            <input type="number" id="wrMatch" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="Contoh: 1250">
-        </div>
-        <div class="grid grid-cols-2 gap-4">
-            <div class="space-y-2">
-                <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Current WR (%)</label>
-                <input type="number" id="wrCurrent" step="0.01" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="50.00">
-            </div>
-            <div class="space-y-2">
-                <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Target WR (%)</label>
-                <input type="number" id="wrTarget" step="0.01" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="60.00">
-            </div>
-        </div>
-    </div>
-
-    <button onclick="calcWR()" class="bg-white text-slate-900 w-full py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-slate-100 transition shadow-lg active:scale-95 duration-200">
-        <i class="fas fa-microscope mr-2"></i>Execute Deep Scan
-    </button>
-
-    <div id="wrRes" class="hidden mt-8 space-y-6">
-        <div class="grid grid-cols-2 gap-4">
-            <div class="p-4 bg-blue-500/5 rounded-2xl border border-blue-500/10 text-center">
-                <p class="text-[9px] text-blue-400 font-bold uppercase mb-1">Total Menang</p>
-                <p id="vWin" class="text-2xl font-black text-white"></p>
-                <p class="text-[8px] text-slate-500">Matches Won</p>
-            </div>
-            <div class="p-4 bg-red-500/5 rounded-2xl border border-red-500/10 text-center">
-                <p class="text-[9px] text-red-400 font-bold uppercase mb-1">Total Kalah</p>
-                <p id="vLoss" class="text-2xl font-black text-white"></p>
-                <p class="text-[8px] text-slate-500">Matches Lost</p>
-            </div>
-        </div>
-
-        <div class="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-[2rem] text-center relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-4 opacity-10">
-                <i class="fas fa-fire text-5xl text-emerald-400"></i>
-            </div>
-            <p class="text-[10px] text-emerald-400 font-bold uppercase mb-2 tracking-widest">Kemenangan Beruntun (Win Streak)</p>
-            <p id="vStreak" class="text-5xl font-black text-emerald-400 mb-2"></p>
-            <p id="vFinalMatch" class="text-[10px] text-slate-400 italic font-medium"></p>
-        </div>
-
-        <div class="p-5 bg-white/5 rounded-2xl border border-white/10 space-y-3">
-            <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-white/5 pb-2">Intelligence Report</h3>
-            <div class="flex justify-between text-xs">
-                <span class="text-slate-500">Match Setelah Target:</span>
-                <span id="vFutureMatch" class="text-white font-bold"></span>
-            </div>
-            <div class="flex justify-between text-xs">
-                <span class="text-slate-500">Peluang Kalah (Lose Margin):</span>
-                <span class="text-red-400 font-bold">0 Match</span>
-            </div>
-            <div class="flex justify-between text-xs">
-                <span class="text-slate-500">Status Akun:</span>
-                <span id="vAccountStatus" class="px-2 py-0.5 rounded-full bg-blue-500 text-[9px] font-bold"></span>
-            </div>
-        </div>
-    </div>
-            </div>
 
         <div class="max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto space-y-4 mb-20 text-left">
             <div class="mb-10 text-center">
@@ -334,45 +326,47 @@ function calcWR() {
     const m = parseInt(document.getElementById('wrMatch').value);
     const cw = parseFloat(document.getElementById('wrCurrent').value);
     const tw = parseFloat(document.getElementById('wrTarget').value);
+    const currentLang = document.getElementById('btn-id').classList.contains('accent-bg') ? 'id' : 'en';
     
-    if (!m || isNaN(cw) || isNaN(tw)) {
-        alert("Mohon masukkan data yang valid!");
-        return;
-    }
-
-    if (tw >= 100) {
-        alert("Target 100% Win Rate secara matematis tidak mungkin dicapai.");
-        return;
-    }
+    if (!m || isNaN(cw) || isNaN(tw)) return;
 
     const wins = Math.round(m * (cw / 100));
     const loss = m - wins;
     const streakNeeded = Math.ceil((tw * m - 100 * wins) / (100 - tw));
 
-    const resDiv = document.getElementById('wrRes');
-    resDiv.classList.remove('hidden');
-
-    // Update Basic Stats
+    document.getElementById('wrRes').classList.remove('hidden');
     document.getElementById('vWin').innerText = wins;
     document.getElementById('vLoss').innerText = loss;
     document.getElementById('vStreak').innerText = (streakNeeded > 0 ? streakNeeded : 0) + " WIN";
-    
-    // Update Advanced Stats
-    const futureTotal = m + (streakNeeded > 0 ? streakNeeded : 0);
-    document.getElementById('vFutureMatch').innerText = futureTotal + " Match";
-    document.getElementById('vFinalMatch').innerText = `Total pertandingan akan menjadi ${futureTotal} dengan Win Rate ${tw}%`;
-    
-    // Account Status Logic
-    let status = "";
-    if (cw >= 70) status = "MYTHICAL GLORY";
-    else if (cw >= 60) status = "PROFESSIONAL";
-    else if (cw >= 50) status = "COMPETITIVE";
-    else status = "LEARNING PHASE";
-    document.getElementById('vAccountStatus').innerText = status;
 
-    // Smooth scroll ke hasil
-    resDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Pesan Utama
+    const msgMain = currentLang === 'id' 
+        ? `Dari total ${m} match, kamu sudah menang ${wins} kali. Untuk capai ${tw}%, kamu harus menang bersih sebanyak:` 
+        : `Out of ${m} matches, you have won ${wins} times. To reach ${tw}%, you need a straight win of:`;
+    document.getElementById('vMsgMain').innerText = msgMain;
+
+    // Status & Advice Logic
+    const statusEl = document.getElementById('vAccountStatus');
+    const adviceEl = document.getElementById('vAdvice');
+    
+    if (cw >= 60) {
+        statusEl.innerText = "PRO PLAYER / GOSS";
+        statusEl.className = "px-3 py-1 rounded-full text-[10px] font-black uppercase bg-emerald-500 text-white";
+        adviceEl.innerText = currentLang === 'id' ? "Gila, WR kamu ngeri! Pertahankan performa ini, kamu layak di tier Immortal." : "Insane WR! Keep it up, you belong in the Immortal tier.";
+    } else if (cw >= 55) {
+        statusEl.innerText = "COMPETITIVE";
+        statusEl.className = "px-3 py-1 rounded-full text-[10px] font-black uppercase bg-blue-500 text-white";
+        adviceEl.innerText = currentLang === 'id' ? "Akun lumayan sehat. Sedikit lagi konsisten biar bisa masuk jajaran pro." : "Pretty healthy account. Be more consistent to join the pro ranks.";
+    } else if (cw >= 50) {
+        statusEl.innerText = "NOOB DETECTED";
+        statusEl.className = "px-3 py-1 rounded-full text-[10px] font-black uppercase bg-yellow-500 text-black";
+        adviceEl.innerText = currentLang === 'id' ? "Main pake tangan apa pake kaki? WR nanggung begini mending belajar laning lagi deh." : "Playing with hands or feet? With this mediocre WR, you better learn laning again.";
+    } else {
+        statusEl.innerText = "BOT / DISASTER";
+        statusEl.className = "px-3 py-1 rounded-full text-[10px] font-black uppercase bg-red-500 text-white";
+        adviceEl.innerText = currentLang === 'id' ? "Fix ini mah beban tim! Lu bot apa gimana? Mending hapus game atau main lawan komputer aja." : "Confirmed team burden! Are you a bot? Better delete the game or just play vs AI.";
+    }
 }
-</script>
+    </script>
 </body>
 </html>
