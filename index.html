@@ -81,6 +81,32 @@
                     </div>
                 </div>
                 
+                <div class="grid grid-cols-2 gap-4 mb-8 text-left">
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest lang-text" data-id="Target Rank" data-en="Target Rank">Target Rank</label>
+                        <select id="tRank" onchange="syncRank('t')" class="input-pro w-full p-4 rounded-2xl text-sm"></select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest lang-text" data-id="Target Bintang" data-en="Target Stars">Target Bintang</label>
+                        <input type="number" id="tStar" oninput="syncStar('t')" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="0">
+                    </div>
+                </div>
+
+                <button onclick="calculatePath()" class="accent-bg w-full py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] transition duration-300">
+                    <i class="fas fa-bolt mr-2"></i><span class="lang-text" data-id="Analisis Jalur" data-en="Analyze Path">Analisis Jalur</span>
+                </button>
+
+                <div id="rankRes" class="hidden mt-8 p-6 rounded-3xl bg-blue-500/10 border border-blue-500/20">
+                    <div class="grid grid-cols-3 gap-2 text-center mb-4">
+                        <div class="p-2"><i class="fas fa-flag text-blue-400 text-xs mb-1"></i><p class="text-[8px] text-slate-500 uppercase font-bold">Net Win</p><p id="netWin" class="text-xl font-black text-blue-400"></p></div>
+                        <div class="p-2"><i class="fas fa-shield text-yellow-400 text-xs mb-1"></i><p class="text-[8px] text-slate-500 uppercase font-bold">Bonus</p><p id="starBonus" class="text-xl font-black text-yellow-400"></p></div>
+                        <div class="p-2"><i class="fas fa-star text-emerald-400 text-xs mb-1"></i><p class="text-[8px] text-slate-500 uppercase font-bold">Grading</p><p id="gradingBonus" class="text-xl font-black text-emerald-400"></p></div>
+                    </div>
+                    <p id="rankSummary" class="text-xs text-center text-slate-300 italic border-t border-white/10 pt-4 leading-relaxed"></p>
+                </div>
+            </div>
+
+
 
 <div class="glass p-8 rounded-[2.5rem] border-t-4 border-emerald-500 shadow-2xl relative overflow-hidden">
     <div class="flex items-center gap-3 mb-8 text-left">
@@ -139,33 +165,9 @@
         </div>
     </div>
 </div>
+            
 
-                <div class="grid grid-cols-2 gap-4 mb-8 text-left">
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest lang-text" data-id="Target Rank" data-en="Target Rank">Target Rank</label>
-                        <select id="tRank" onchange="syncRank('t')" class="input-pro w-full p-4 rounded-2xl text-sm"></select>
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest lang-text" data-id="Target Bintang" data-en="Target Stars">Target Bintang</label>
-                        <input type="number" id="tStar" oninput="syncStar('t')" class="input-pro w-full p-4 rounded-2xl text-sm" placeholder="0">
-                    </div>
-                </div>
-
-                <button onclick="calculatePath()" class="accent-bg w-full py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] transition duration-300">
-                    <i class="fas fa-bolt mr-2"></i><span class="lang-text" data-id="Analisis Jalur" data-en="Analyze Path">Analisis Jalur</span>
-                </button>
-
-                <div id="rankRes" class="hidden mt-8 p-6 rounded-3xl bg-blue-500/10 border border-blue-500/20">
-                    <div class="grid grid-cols-3 gap-2 text-center mb-4">
-                        <div class="p-2"><i class="fas fa-flag text-blue-400 text-xs mb-1"></i><p class="text-[8px] text-slate-500 uppercase font-bold">Net Win</p><p id="netWin" class="text-xl font-black text-blue-400"></p></div>
-                        <div class="p-2"><i class="fas fa-shield text-yellow-400 text-xs mb-1"></i><p class="text-[8px] text-slate-500 uppercase font-bold">Bonus</p><p id="starBonus" class="text-xl font-black text-yellow-400"></p></div>
-                        <div class="p-2"><i class="fas fa-star text-emerald-400 text-xs mb-1"></i><p class="text-[8px] text-slate-500 uppercase font-bold">Grading</p><p id="gradingBonus" class="text-xl font-black text-emerald-400"></p></div>
-                    </div>
-                    <p id="rankSummary" class="text-xs text-center text-slate-300 italic border-t border-white/10 pt-4 leading-relaxed"></p>
-                </div>
-            </div>
-
-
+            
         <div class="max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto space-y-4 mb-20 text-left">
             <div class="mb-10 text-center">
                 <h2 class="text-3xl font-bold text-white mb-2 tracking-tight">FAQ</h2>
